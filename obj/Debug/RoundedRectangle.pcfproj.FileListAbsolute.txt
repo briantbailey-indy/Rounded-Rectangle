@@ -1,0 +1,2 @@
+E:\development\PowerApps\PCF\RoundedRectangle\obj\Debug\RoundedRectangle.pcfprojAssemblyReference.cache
+E:\development\PowerApps\PCF\RoundedRectangle\obj\Debug\RoundedRectangle.pcfproj.CoreCompileInputs.cache

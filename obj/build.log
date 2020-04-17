@@ -1,0 +1,57 @@
+﻿  Restore completed in 25.81 ms for E:\development\PowerApps\PCF\RoundedRectangle\RoundedRectangle.pcfproj.
+  Restore completed in 25.81 ms for E:\development\PowerApps\PCF\RoundedRectangle\obj\PowerAppsTools_brbai\PowerAppsTools_brbai.cdsproj.
+  
+  > pcf-project@1.0.0 clean E:\development\PowerApps\PCF\RoundedRectangle
+  > pcf-scripts clean "--noColor" "--buildMode" "development" "--outDir" "E:\development\PowerApps\PCF\RoundedRectangle\out\controls" "--buildSource" "MSBuild"
+  
+  [14:30:50] [clean]  Initializing...
+  [14:30:50] [clean]  Cleaning build outputs...
+  [14:30:50] [clean]  Succeeded
+  Cleaning output directory: bin\Debug\, Intermediate directory: obj\Debug\ and Solution Packager working directory: obj\Debug\
+  Removing log file: bin\Debug\SolutionPackager.log and generated solution package: bin\Debug\PowerAppsTools_brbai.zip
+  
+  > pcf-project@1.0.0 build E:\development\PowerApps\PCF\RoundedRectangle
+  > pcf-scripts build "--noColor" "--buildMode" "development" "--outDir" "E:\development\PowerApps\PCF\RoundedRectangle\out\controls" "--buildSource" "MSBuild"
+  
+  [14:30:53] [build]  Initializing...
+  [14:30:53] [build]  Validating manifest...
+  [14:30:53] [build]  Validating control...
+  [14:30:54] [build]  Generating manifest types...
+  [14:30:54] [build]  Compiling and bundling control...
+  [Webpack stats]:
+  Hash: 8387906b75093d697df1
+  Version: webpack 4.28.4
+  Time: 1487ms
+  Built at: 04/17/2020 2:30:56 PM
+      Asset      Size  Chunks             Chunk Names
+  bundle.js  9.31 KiB    main  [emitted]  main
+  Entrypoint main = bundle.js
+  [./RoundedRectangle/index.ts] 5.16 KiB {main} [built]
+  [14:30:56] [build]  Generating build outputs...
+  [14:30:56] [build]  Succeeded
+  Running Solution Packager to build package type: Unmanaged bin\Debug\PowerAppsTools_brbai.zip
+  SolutionPackger CRM Solution Packaging Tool [Version 9.1.0.44]
+  c 2017 Microsoft Corporation.  All rights reserved
+  
+  
+  Packing E:\development\PowerApps\PCF\RoundedRectangle\obj\PowerAppsTools_brbai\obj\Debug\Metadata to bin\Debug\PowerAppsTools_brbai.zip
+  
+  Processing Component: Entities
+  Processing Component: Roles
+  Processing Component: Workflows
+  Processing Component: FieldSecurityProfiles
+  Processing Component: Templates
+  Processing Component: EntityMaps
+  Processing Component: EntityRelationships
+  Processing Component: OrganizationSettings
+  Processing Component: optionsets
+  Processing Component: CustomControls
+   - brbai.RoundedRectangle
+  Processing Component: SolutionPluginAssemblies
+  Processing Component: EntityDataProviders
+  
+  Unmanaged Pack complete.
+  
+  Solution: bin\Debug\PowerAppsTools_brbai.zip generated.
+  Solution Package Type: Unmanaged generated.
+  Completed intermiediate files clean up.

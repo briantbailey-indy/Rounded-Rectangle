@@ -1,0 +1,141 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.6.2": {
+      "Microsoft.PowerApps.MSBuild.Pcf/1.2.6": {
+        "type": "package",
+        "build": {
+          "build/_._": {}
+        }
+      },
+      "Microsoft.PowerApps.MSBuild.Solution/1.2.6": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.PowerApps.MSBuild.Solution.props": {},
+          "build/Microsoft.PowerApps.MSBuild.Solution.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.props": {},
+          "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.targets": {}
+        }
+      },
+      "RoundedRectangle/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.2",
+        "dependencies": {
+          "Microsoft.PowerApps.MSBuild.Pcf": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/RoundedRectangle.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RoundedRectangle.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microsoft.PowerApps.MSBuild.Pcf/1.2.6": {
+      "sha512": "SSNU29umx3MZJ47LyD+ybbaO0QhkUnywSvIuqllK2v9iv2lKXy4+DAZySSyqmZl3s86tIW1NJtWqQEZ0bYdcYg==",
+      "type": "package",
+      "path": "microsoft.powerapps.msbuild.pcf/1.2.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "3rdPartyNotice.txt",
+        "LICENSE.txt",
+        "build/Microsoft.PowerApps.MSBuild.Pcf.props",
+        "build/Microsoft.PowerApps.MSBuild.Pcf.targets",
+        "microsoft.powerapps.msbuild.pcf.1.2.6.nupkg.sha512",
+        "microsoft.powerapps.msbuild.pcf.nuspec"
+      ]
+    },
+    "Microsoft.PowerApps.MSBuild.Solution/1.2.6": {
+      "sha512": "xEFzPYMdOIclCoaJq/0jBTtSynN+YPau1F7YI6IthlaR5yrto1jsGVZsts9rzjCz9avtDbYt/HbN3IHcWO3m7w==",
+      "type": "package",
+      "path": "microsoft.powerapps.msbuild.solution/1.2.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "3rdPartyNotice.txt",
+        "LICENSE.txt",
+        "build/Microsoft.PowerApps.MSBuild.Solution.props",
+        "build/Microsoft.PowerApps.MSBuild.Solution.targets",
+        "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.props",
+        "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.targets",
+        "content/Microsoft.ApplicationInsights.dll",
+        "content/Microsoft.PowerApps.AppInsights.BatchedTelemetry.dll",
+        "content/Microsoft.PowerApps.AppInsights.BatchedTelemetryChannel.dll",
+        "content/SolutionPackager.exe",
+        "content/SolutionPackager.exe.config",
+        "content/SolutionPackagerLib.dll",
+        "content/System.ValueTuple.dll",
+        "content/bolt.cli.dll",
+        "content/bolt.system.dll",
+        "content/pacTelemetryTask.exe",
+        "content/pacTelemetryUpload.exe",
+        "microsoft.powerapps.msbuild.solution.1.2.6.nupkg.sha512",
+        "microsoft.powerapps.msbuild.solution.nuspec",
+        "tasks/net462/Microsoft.PowerApps.MSBuild.Tasks.dll",
+        "tasks/net462/bolt.module.solution.dll",
+        "tasks/netstandard2.0/Microsoft.PowerApps.MSBuild.Tasks.dll",
+        "tasks/netstandard2.0/bolt.module.solution.dll"
+      ]
+    },
+    "RoundedRectangle/1.0.0": {
+      "type": "project",
+      "path": "../../RoundedRectangle.pcfproj",
+      "msbuildProject": "../../RoundedRectangle.pcfproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.6.2": [
+      "Microsoft.PowerApps.MSBuild.Solution >= 1.*",
+      "RoundedRectangle >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Brian Bailey\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "E:\\development\\PowerApps\\PCF\\RoundedRectangle\\obj\\PowerAppsTools_brbai\\PowerAppsTools_brbai.cdsproj",
+      "projectName": "PowerAppsTools_brbai",
+      "projectPath": "E:\\development\\PowerApps\\PCF\\RoundedRectangle\\obj\\PowerAppsTools_brbai\\PowerAppsTools_brbai.cdsproj",
+      "packagesPath": "C:\\Users\\Brian Bailey\\.nuget\\packages\\",
+      "outputPath": "E:\\development\\PowerApps\\PCF\\RoundedRectangle\\obj\\PowerAppsTools_brbai\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Brian Bailey\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net462"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net462": {
+          "projectReferences": {
+            "E:\\development\\PowerApps\\PCF\\RoundedRectangle\\RoundedRectangle.pcfproj": {
+              "projectPath": "E:\\development\\PowerApps\\PCF\\RoundedRectangle\\RoundedRectangle.pcfproj"
+            }
+          }
+        }
+      }
+    },
+    "frameworks": {
+      "net462": {
+        "dependencies": {
+          "Microsoft.PowerApps.MSBuild.Solution": {
+            "target": "Package",
+            "version": "[1.*, )"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,138 @@
+import {IInputs, IOutputs} from "./generated/ManifestTypes";
+
+export class RoundedRectangle implements ComponentFramework.StandardControl<IInputs, IOutputs> {
+
+	// This element contains all elements of our code component example
+	private _container: HTMLDivElement;
+	// Power Apps component framework delegate which will be assigned to this object which would be called whenever any update happens.
+	private _notifyOutputChanged: () => void;
+	// Event Handler 'refreshData' reference
+	private _refreshData: EventListenerOrEventListenerObject;
+
+	private _imgElement:HTMLImageElement;
+
+	private _transImg: string;
+
+	/**
+	 * Empty constructor.
+	 */
+	constructor()
+	{
+
+	}
+
+	/**
+	 * Used to initialize the control instance. Controls can kick off remote server calls and other initialization actions here.
+	 * Data-set values are not initialized here, use updateView.
+	 * @param context The entire property bag available to control via Context Object; It contains values as set up by the customizer mapped to property names defined in the manifest, as well as utility functions.
+	 * @param notifyOutputChanged A callback method to alert the framework that the control has new outputs ready to be retrieved asynchronously.
+	 * @param state A piece of data that persists in one session for a single user. Can be set at any point in a controls life cycle by calling 'setControlState' in the Mode interface.
+	 * @param container If a control is marked control-type='standard', it will receive an empty div element within which it can render its content.
+	 */
+	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container:HTMLDivElement)
+	{
+		this._transImg = "transImg";
+
+		// Add control initialization code
+		this._container = document.createElement("div");
+		this._container.id = "rounded";
+
+		let imageUrl:string;
+
+		// get image resource (see: https://docs.microsoft.com/en-us/powerapps/developer/component-framework/reference/resources/getresource ) 
+		
+		// this._imgElement = document.createElement("img");
+		// this._imgElement.id = this._transImg;
+		// this._imgElement.height = Number(context.parameters.height.raw);
+		// context.resources.getResource(this._transImg, this.setImage.bind(this, false, "jpg"), this.showError.bind(this));
+
+		// this._container.appendChild(this._imgElement);
+
+		this.createRectangle(context);
+
+		container.appendChild(this._container);
+	}
+
+	/**
+	 * Called when any value in the property bag has changed. This includes field values, data-sets, global values such as container height and width, offline status, control metadata values such as label, visible, etc.
+	 * @param context The entire property bag available to control via Context Object; It contains values as set up by the customizer mapped to names defined in the manifest, as well as utility functions
+	 */
+	public updateView(context: ComponentFramework.Context<IInputs>): void
+	{
+		this.createRectangle(context)
+	}
+
+	public createRectangle(context: ComponentFramework.Context<IInputs>): void
+	{
+		// Add code to update control view
+		var width = Number(context.parameters.width.raw) - (2 * Number(context.parameters.borderWidth.raw));
+		var height = Number(context.parameters.height.raw) - (2 * Number(context.parameters.borderWidth.raw));
+		// var imageElement = document.getElementById("transImg");
+
+		// if (imageElement !== null){
+		// 	imageElement.setAttribute("height", height + "px;");
+		// 	imageElement.setAttribute("border", "0");
+		// 	this._container.replaceChild(imageElement, imageElement);
+		// }
+
+		//Populate the style property for the DIV
+		var	style = "";
+		style += "background-color:" + context.parameters.backgroundColor.raw + ";";
+		style += "border-color:" + context.parameters.borderColor.raw + ";";
+		style += "border-style:" + context.parameters.borderStyle.raw + ";";
+		style += "border-width:" + context.parameters.borderWidth.raw + "px;";
+		
+		//If the the border-width is not set (set to zero) then create the border radius for each corner from the input values
+		if (Number(context.parameters.borderRadius.raw) == 0){
+			style += "border-radius:" + context.parameters.borderRadiusTopLeft.raw + "px ";		
+			style += "" + context.parameters.borderRadiusTopRight.raw + "px ";		
+			style += "" + context.parameters.borderRadiusBottomLeft.raw + "px ";		
+			style += "" + context.parameters.borderRadiusBottomRight.raw + "px;";
+		}
+		else{
+			style += "border-radius:" + context.parameters.borderRadius.raw + "px;";		
+		}
+
+		style += "height:" + height + "px;";
+		style += "width:" + width + "px;";
+		
+		this._container.setAttribute("style", style);
+	}
+
+	private setImage(shouldUpdateOutput:boolean, fileType: string, fileContent: string): void
+	{
+		let imageUrl:string = this.generateImageSrcUrl(fileType, fileContent);
+		this._imgElement.src = imageUrl;
+
+	}
+
+	private generateImageSrcUrl(fileType: string, fileContent: string): string
+	{
+		return  "data&colon;image/" + fileType + ";base64, " + fileContent;
+	}
+
+	private showError(): void
+	{
+
+	}
+
+	/** 
+	 * It is called by the framework prior to a control receiving new data. 
+	 * @returns an object based on nomenclature defined in manifest, expecting object[s] for property marked as “bound” or “output”
+	 */
+	public getOutputs(): IOutputs
+	{
+		return {
+			
+		};
+	}
+
+	/** 
+	 * Called when the control is to be removed from the DOM tree. Controls should use this call for cleanup.
+	 * i.e. cancelling any pending remote calls, removing listeners, etc.
+	 */
+	public destroy(): void
+	{
+		// Add code to cleanup control if necessary
+	}
+}

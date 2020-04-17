@@ -1,0 +1,19 @@
+2020-04-17 14:30:57.650 - Info	
+Packing E:\development\PowerApps\PCF\RoundedRectangle\obj\PowerAppsTools_brbai\obj\Debug\Metadata to bin\Debug\PowerAppsTools_brbai.zip
+
+2020-04-17 14:30:57.663 - Info	Processing Component: Entities
+2020-04-17 14:30:57.665 - Info	Processing Component: Roles
+2020-04-17 14:30:57.667 - Info	Processing Component: Workflows
+2020-04-17 14:30:57.667 - Info	Processing Component: FieldSecurityProfiles
+2020-04-17 14:30:57.667 - Info	Processing Component: Templates
+2020-04-17 14:30:57.668 - Info	Processing Component: EntityMaps
+2020-04-17 14:30:57.668 - Info	Processing Component: EntityRelationships
+2020-04-17 14:30:57.677 - Info	Processing Component: OrganizationSettings
+2020-04-17 14:30:57.677 - Info	Processing Component: optionsets
+2020-04-17 14:30:57.677 - Info	Processing Component: CustomControls
+2020-04-17 14:30:57.688 - Info	 - brbai.RoundedRectangle
+2020-04-17 14:30:57.714 - Info	Processing Component: SolutionPluginAssemblies
+2020-04-17 14:30:57.715 - Info	Processing Component: EntityDataProviders
+2020-04-17 14:30:57.734 - Info	
+Unmanaged Pack complete.
+
