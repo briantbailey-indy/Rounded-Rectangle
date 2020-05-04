@@ -4,8 +4,9 @@
 
 // Define IInputs and IOutputs Type. They should match with ControlManifest.
 export interface IInputs {
-    height: ComponentFramework.PropertyTypes.WholeNumberProperty;
-    width: ComponentFramework.PropertyTypes.WholeNumberProperty;
+    showValues: ComponentFramework.PropertyTypes.TwoOptionsProperty;
+    internalHeight: ComponentFramework.PropertyTypes.WholeNumberProperty;
+    internalWidth: ComponentFramework.PropertyTypes.WholeNumberProperty;
     backgroundColor: ComponentFramework.PropertyTypes.StringProperty;
     borderColor: ComponentFramework.PropertyTypes.StringProperty;
     borderRadius: ComponentFramework.PropertyTypes.WholeNumberProperty;
@@ -13,8 +14,11 @@ export interface IInputs {
     borderRadiusTopRight: ComponentFramework.PropertyTypes.WholeNumberProperty;
     borderRadiusBottomLeft: ComponentFramework.PropertyTypes.WholeNumberProperty;
     borderRadiusBottomRight: ComponentFramework.PropertyTypes.WholeNumberProperty;
-    borderStyle: ComponentFramework.PropertyTypes.EnumProperty<"none" | "hidden" | "dotted" | "dashed" | "solid" | "double" | "groove" | "ridge" | "inset" | "outset" | "initial" | "inherit">;
+    borderStyle: ComponentFramework.PropertyTypes.EnumProperty<"none" | "dashed" | "dotted" | "double" | "groove" | "hidden" | "inherit" | "initial" | "inset" | "outset" | "ridge" | "solid">;
     borderWidth: ComponentFramework.PropertyTypes.WholeNumberProperty;
+    gradientDegree: ComponentFramework.PropertyTypes.WholeNumberProperty;
+    gradientColorOne: ComponentFramework.PropertyTypes.StringProperty;
+    gradientColorTwo: ComponentFramework.PropertyTypes.StringProperty;
 }
 export interface IOutputs {
 }

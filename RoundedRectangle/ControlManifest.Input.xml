@@ -2,14 +2,15 @@
 <manifest>
   <control namespace="brbai" 
             constructor="RoundedRectangle" 
-            version="0.0.1" 
+            version="0.2.4" 
             display-name-key="Rounded Rectangle"
             description-key="Create a rectangle that has the option of having rounded edges"
             control-type="standard">
 
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
-    <property name="height" display-name-key="Height" description-key="The height of the control" of-type="Whole.None" usage="input" required="true" default-value="100" />
-    <property name="width" display-name-key="Width" description-key="The width of the control" of-type="Whole.None" usage="input" required="true"  default-value="100" />
+    <property name="showValues" display-name-key="showValues" description-key="Debug value" of-type="TwoOptions" usage="input" required="true" default-value="0" />
+    <property name="internalHeight" display-name-key="Height" description-key="The height of the control" of-type="Whole.None" usage="input" required="true" default-value="100" />
+    <property name="internalWidth" display-name-key="Width" description-key="The width of the control" of-type="Whole.None" usage="input" required="true"  default-value="100" />
     <property name="backgroundColor" display-name-key="BackgroundColor" description-key="The background color HEX value" of-type="SingleLine.Text" usage="input" required="false" default-value="#ffffff" />
     <property name="borderColor" display-name-key="BorderColor" description-key="The HEX color value of the border" of-type="SingleLine.Text" usage="input" required="false" default-value="#000000" />
     <property name="borderRadius" display-name-key="BorderRadius" description-key="The radius of the corners" of-type="Whole.None" usage="input" required="false" default-value="0" />
@@ -17,21 +18,24 @@
     <property name="borderRadiusTopRight" display-name-key="BorderRadiusTopRight" description-key="The radius of the top right corner" of-type="Whole.None" usage="input" required="false" default-value="0" />
     <property name="borderRadiusBottomLeft" display-name-key="BorderRadiusBottomLeft" description-key="The radius of the bottom left corner" of-type="Whole.None" usage="input" required="false" default-value="0" />
     <property name="borderRadiusBottomRight" display-name-key="BorderRadiusBottomRight" description-key="The radius of the bottom right corner" of-type="Whole.None" usage="input" required="false" default-value="0" />
-    <property name="borderStyle" display-name-key="BorderStyle" description-key="The css style of the border" of-type="Enum" usage="input" required="false"  default-value="solid">
-      <value name="none" display-name-key="borderStyleNone" description-key="">none</value>
-      <value name="hidden" display-name-key="borderStyleHidden" description-key="">hidden</value>
-      <value name="dotted" display-name-key="borderStyleDotted" description-key="">dotted</value>
-      <value name="dashed" display-name-key="borderStyleDashed" description-key="">dashed</value>
-      <value name="solid" display-name-key="borderStyleSolid" description-key="">solid</value>
-      <value name="double" display-name-key="borderStyleDouble" description-key="">double</value>
-      <value name="groove" display-name-key="borderStyleGroove" description-key="">groove</value>
-      <value name="ridge" display-name-key="borderStyleRidge" description-key="">ridge</value>
-      <value name="inset" display-name-key="borderStyleInset" description-key="">inset</value>
-      <value name="outset" display-name-key="borderStyleOutset" description-key="">outset</value>
-      <value name="initial" display-name-key="borderStyleInitial" description-key="">initial</value>
-      <value name="inherit" display-name-key="borderStyleInherit" description-key="">inherit</value>
+    <property name="borderStyle" display-name-key="BorderStyle" description-key="The css style of the border" of-type="Enum" usage="input" required="false"  default-value="none">
+      <value name="none" display-name-key="borderStyleNone" description-key="none">none</value>
+      <value name="dashed" display-name-key="borderStyleDashed" description-key="dashed">dashed</value>
+      <value name="dotted" display-name-key="borderStyleDotted" description-key="dotted">dotted</value>
+      <value name="double" display-name-key="borderStyleDouble" description-key="double">double</value>
+      <value name="groove" display-name-key="borderStyleGroove" description-key="groove">groove</value>
+      <value name="hidden" display-name-key="borderStyleHidden" description-key="hidden">hidden</value>
+      <value name="inherit" display-name-key="borderStyleInherit" description-key="inherit">inherit</value>
+      <value name="initial" display-name-key="borderStyleInitial" description-key="initial">initial</value>
+      <value name="inset" display-name-key="borderStyleInset" description-key="inset">inset</value>
+      <value name="outset" display-name-key="borderStyleOutset" description-key="outset">outset</value>
+      <value name="ridge" display-name-key="borderStyleRidge" description-key="ridge">ridge</value>
+      <value name="solid" display-name-key="borderStyleSolid" description-key="solid">solid</value>
     </property>
     <property name="borderWidth" display-name-key="BorderWidth" description-key="The width of the border of the rectangle" of-type="Whole.None" usage="input" required="false" default-value="1" />
+    <property name="gradientDegree" display-name-key="Gradient-Degree" description-key="The degree of the linear gradient" of-type="Whole.None" usage="input" required="false" default-value="0" />
+    <property name="gradientColorOne" display-name-key="Gradient-Color-One" description-key="The first color of the linear gradient (HEX)" of-type="SingleLine.Text" usage="input" required="false" default-value="" />
+    <property name="gradientColorTwo" display-name-key="Gradient-Color-Two" description-key="The second color of the linear gradient (HEX)" of-type="SingleLine.Text" usage="input" required="false" default-value="" />
     <!-- 
       Property node's of-type attribute can be of-type-group attribute. 
       Example:
@@ -46,7 +50,6 @@
     <resources>
       <code path="index.ts" order="1"/>
       <css path="css/RoundedRectangle.css" order="1" />
-      <img path="images/transparent.jpg" />
       <!-- UNCOMMENT TO ADD MORE RESOURCES
       <resx path="strings/RoundedRectangle.1033.resx" version="1.0.0" />
       -->

@@ -1,4 +1,7 @@
 import {IInputs, IOutputs} from "./generated/ManifestTypes";
+import { type } from "os";
+import { isAbsolute } from "path";
+import { isNull } from "util";
 
 export class RoundedRectangle implements ComponentFramework.StandardControl<IInputs, IOutputs> {
 
@@ -9,9 +12,9 @@ export class RoundedRectangle implements ComponentFramework.StandardControl<IInp
 	// Event Handler 'refreshData' reference
 	private _refreshData: EventListenerOrEventListenerObject;
 
-	private _imgElement:HTMLImageElement;
+	private _debugLabel: HTMLLabelElement;
 
-	private _transImg: string;
+	//private _customerControlProps: any;
 
 	/**
 	 * Empty constructor.
@@ -31,25 +34,20 @@ export class RoundedRectangle implements ComponentFramework.StandardControl<IInp
 	 */
 	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container:HTMLDivElement)
 	{
-		this._transImg = "transImg";
-
 		// Add control initialization code
 		this._container = document.createElement("div");
 		this._container.id = "rounded";
 
-		let imageUrl:string;
-
-		// get image resource (see: https://docs.microsoft.com/en-us/powerapps/developer/component-framework/reference/resources/getresource ) 
-		
-		// this._imgElement = document.createElement("img");
-		// this._imgElement.id = this._transImg;
-		// this._imgElement.height = Number(context.parameters.height.raw);
-		// context.resources.getResource(this._transImg, this.setImage.bind(this, false, "jpg"), this.showError.bind(this));
-
-		// this._container.appendChild(this._imgElement);
-
+		//Call to create the div / rectangle
 		this.createRectangle(context);
 
+		// this._debugLabel = document.createElement("label");
+		// this._debugLabel.id = "debugLabel";
+		// this._debugLabel.setAttribute("style", "visibility:hidden;");
+		
+		//this._container.appendChild(this._debugLabel);
+
+		//Add div element to the container
 		container.appendChild(this._container);
 	}
 
@@ -65,50 +63,61 @@ export class RoundedRectangle implements ComponentFramework.StandardControl<IInp
 	public createRectangle(context: ComponentFramework.Context<IInputs>): void
 	{
 		// Add code to update control view
-		var width = Number(context.parameters.width.raw) - (2 * Number(context.parameters.borderWidth.raw));
-		var height = Number(context.parameters.height.raw) - (2 * Number(context.parameters.borderWidth.raw));
-		// var imageElement = document.getElementById("transImg");
+		
+		// var a = context.mode;
+		// var height = context.mode._customControlProperties.parentDefinedControlProps.height;
+		// var width = context.mode._customControlProperties.parentDefinedControlProps.width;
+		
+		// var testH = context.mode.allocatedHeight;
+		// var testW = context.mode.allocatedWidth;
 
-		// if (imageElement !== null){
-		// 	imageElement.setAttribute("height", height + "px;");
-		// 	imageElement.setAttribute("border", "0");
-		// 	this._container.replaceChild(imageElement, imageElement);
-		// }
+		// var height = Number(testH) - (2 * Number(context.parameters.borderWidth.raw));
+		// var width = Number(testW) - (2 * Number(context.parameters.borderWidth.raw));
+
+		var width = Number(context.parameters.internalWidth.raw) - (2 * Number(context.parameters.borderWidth.raw));
+		var height = Number(context.parameters.internalHeight.raw) - (2 * Number(context.parameters.borderWidth.raw));
 
 		//Populate the style property for the DIV
 		var	style = "";
-		style += "background-color:" + context.parameters.backgroundColor.raw + ";";
-		style += "border-color:" + context.parameters.borderColor.raw + ";";
-		style += "border-style:" + context.parameters.borderStyle.raw + ";";
-		style += "border-width:" + context.parameters.borderWidth.raw + "px;";
+		style += "height:" + height + "px; ";
+		style += "width:" + width + "px; ";
+		style += "background-color:" + context.parameters.backgroundColor.raw + "; ";
+		style += "border-color:" + context.parameters.borderColor.raw + "; ";
+		style += "border-style:" + context.parameters.borderStyle.raw + "; ";
+		style += "border-width:" + context.parameters.borderWidth.raw + "px; ";
 		
 		//If the the border-width is not set (set to zero) then create the border radius for each corner from the input values
 		if (Number(context.parameters.borderRadius.raw) == 0){
-			style += "border-radius:" + context.parameters.borderRadiusTopLeft.raw + "px ";		
-			style += "" + context.parameters.borderRadiusTopRight.raw + "px ";		
-			style += "" + context.parameters.borderRadiusBottomLeft.raw + "px ";		
-			style += "" + context.parameters.borderRadiusBottomRight.raw + "px;";
+			style += "border-radius:" + Number(context.parameters.borderRadiusTopLeft.raw) + "px ";		
+			style += "" + Number(context.parameters.borderRadiusTopRight.raw) + "px ";		
+			style += "" + Number(context.parameters.borderRadiusBottomRight.raw) + "px ";
+			style += "" + Number(context.parameters.borderRadiusBottomLeft.raw) + "px; ";		
 		}
 		else{
-			style += "border-radius:" + context.parameters.borderRadius.raw + "px;";		
+			style += "border-radius:" + Number(context.parameters.borderRadius.raw) + "px; ";		
 		}
 
-		style += "height:" + height + "px;";
-		style += "width:" + width + "px;";
-		
+		//Manage linear-gradients for the div (degree, color 1, color 2)
+		if (Number(context.parameters.gradientDegree.raw) != 0){
+			style += "background-image:linear-gradient(" + Math.abs(Number(context.parameters.gradientDegree.raw)) + "deg, " 
+			style += "" + context.parameters.gradientColorOne.raw + ", " 
+			style += "" + context.parameters.gradientColorTwo.raw + ")"
+		}
+
 		this._container.setAttribute("style", style);
-	}
 
-	private setImage(shouldUpdateOutput:boolean, fileType: string, fileContent: string): void
-	{
-		let imageUrl:string = this.generateImageSrcUrl(fileType, fileContent);
-		this._imgElement.src = imageUrl;
-
-	}
-
-	private generateImageSrcUrl(fileType: string, fileContent: string): string
-	{
-		return  "data&colon;image/" + fileType + ";base64, " + fileContent;
+		// if (context.parameters.showValues.raw){
+		// 	var debugElement = document.getElementById('debugLabel');
+		// 	if (!isNull(debugElement)){
+		// 		this._debugLabel.textContent = String(testH) + ' - ' + context.parameters.showValues.raw;
+		// 		this._debugLabel.setAttribute("style", "visibility:visible;");
+		// 	}
+		// } else {
+		// 	var debugElement = document.getElementById('debugLabel');
+		// 	if (!isNull(debugElement)){
+		// 		this._debugLabel.setAttribute("style", "visibility:hidden;");
+		// 	}
+		// }
 	}
 
 	private showError(): void
